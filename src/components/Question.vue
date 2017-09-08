@@ -23,6 +23,8 @@ import { findIndex, shuffle } from 'lodash'
 import answer from './Answer'
 import result from './Result'
 
+const NB_PROPOSITIONS = 3
+
 export default {
   name: 'question',
   components: { answer, result },
@@ -50,26 +52,37 @@ export default {
 
       this.answers.push(this.isCorrect)
       setTimeout(() => {
-        this.fetchQuestions()
+        this.getNewQuestion()
       }, 2500)
     },
     async fetchQuestions () {
       const questionsRaw = await axios('static/datas/questions.json')
       const questions = questionsRaw.data
-      const randQuestion = questions[Math.floor(Math.random() * questions.length)]
+      this.questions = questions
 
-      const userReponseId = findIndex(this.users, {id: randQuestion.response_id})
+      this.getNewQuestion()
+    },
+    getNewQuestion () {
+      if (this.questions.length === 0) {
+        return
+      }
+
+      const randQuestionId = Math.floor(Math.random() * this.questions.length)
+      const randQuestion = this.questions[randQuestionId]
+      const goodResponseId = findIndex(this.users, {id: randQuestion.response_id})
 
       const getRandAnwsers = () => {
         const usersCopy = [...this.users]
-        usersCopy.splice(userReponseId, 1)
+        usersCopy.splice(goodResponseId, 1)
 
-        const randAnwsers = [this.users[userReponseId]]
-        for (let i = 0; i < 3; i++) {
-          const randIndex = Math.floor(Math.random() * questions.length)
+        const randAnwsers = [this.users[goodResponseId]]
+        for (let i = 0; i < NB_PROPOSITIONS; i++) {
+          const randIndex = Math.floor(Math.random() * this.questions.length)
           randAnwsers.push(usersCopy[randIndex])
           usersCopy.splice(randIndex, 1)
         }
+
+        this.questions.splice(randQuestionId, 1)
 
         // We shuffle the answer to avoid to have good answer at the first place
         return shuffle(randAnwsers)
