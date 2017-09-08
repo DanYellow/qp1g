@@ -129,9 +129,8 @@ export default {
 
   h1 {
     font: 25px Georgia;
-    // border: 1px solid #d1d1d1;
-    padding: 10px;
-    margin: 0 3px 15px 3px;
+    padding: 0;
+    margin: 0 0 25px 0;
   }
 
   .answers {

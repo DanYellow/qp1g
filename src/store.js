@@ -6,7 +6,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     responses: [],
-    isQuizEnded: false
+    isQuizEnded: false,
+    nbQuestions: 0
   },
   mutations: {
     setResponse (state, { response, index }) {
@@ -15,9 +16,14 @@ const store = new Vuex.Store({
     },
     setQuestionsNumber (state, length = 5) {
       state.responses = new Array(length).fill(null)
+      state.nbQuestions = length
     },
     isQuizEnded (state, isQuizEnded = false) {
       state.isQuizEnded = isQuizEnded
+    },
+    reInitQuiz (state) {
+      state.responses = new Array(length).fill(null)
+      state.isQuizEnded = false
     }
   }
 })
