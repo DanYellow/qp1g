@@ -34,5 +34,21 @@ module.exports = {
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
     cssSourceMap: false
+  },
+  module: {
+    // module.rules is the same as module.loaders in 1.x
+    rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        // vue-loader options goes here
+        options: {
+          // ...
+          postcss: [
+            require('postcss-cssnext')(),
+          ]
+        }
+      }
+    ]
   }
 }
