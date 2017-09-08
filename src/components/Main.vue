@@ -1,18 +1,20 @@
 <template>
   <div class="main">
-    <question></question>
+    <question v-if="!isQuizEnded"></question>
+    <progression v-if="!isQuizEnded"></progression>
   </div>
 </template>
 
 <script>
 import question from './Question'
+import progression from './Progression'
 
 export default {
-  components: { question },
+  components: { question, progression },
   name: 'main',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  computed: {
+    isQuizEnded () {
+      return this.$store.state.isQuizEnded
     }
   }
 }

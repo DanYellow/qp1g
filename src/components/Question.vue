@@ -12,7 +12,10 @@
         </ul>
       </form>
     </div>
-    <result :isCorrect="isCorrect"></result>
+    <result
+      v-if="isCorrect !== null"
+      :isCorrect="isCorrect"></result>
+    <div v-if="isQuizEnded === true"> Score : </div>
   </section>
 </template>
 
@@ -32,12 +35,13 @@ export default {
     return {
       question: {},
       isCorrect: null,
-      answers: []
+      questionIndex: 0
     }
   },
   created () {
     this.fetchUsers().then((users) => {
       this.users = users
+      this.$store.commit('setQuestionsNumber', 2)
       this.fetchQuestions()
     })
   },
@@ -50,10 +54,16 @@ export default {
         this.isCorrect = false
       }
 
-      this.answers.push(this.isCorrect)
+      this.$store.commit('setResponse', {
+        response: this.isCorrect,
+        index: this.questionIndex
+      })
+
       setTimeout(() => {
         this.getNewQuestion()
       }, 2500)
+
+      this.questionIndex += 1
     },
     async fetchQuestions () {
       const questionsRaw = await axios('static/datas/questions.json')
@@ -63,7 +73,8 @@ export default {
       this.getNewQuestion()
     },
     getNewQuestion () {
-      if (this.questions.length === 0) {
+      if (this.questionIndex >= this.$store.state.responses.length) {
+        this.$store.commit('isQuizEnded', true)
         return
       }
 
@@ -94,12 +105,17 @@ export default {
     },
     fetchUsers () {
       return axios.get('static/datas/users.json')
-      .then((users) => {
-        return users.data
-      })
-      .catch((error) => {
-        throw new Error(error)
-      })
+        .then((users) => {
+          return users.data
+        })
+        .catch((error) => {
+          throw new Error(error)
+        })
+    }
+  },
+  computed: {
+    isQuizEnded () {
+      return this.$store.state.isQuizEnded
     }
   }
 }
