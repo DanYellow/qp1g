@@ -1,13 +1,14 @@
 <template>
   <section class="question">
     <div v-if="Object.keys(question).length > 0 && isCorrect === null">
-      <blockquote class="quote" v-text="question.question"></blockquote>
+      <blockquote class="quote">“{{ question.question }}”</blockquote>
       <form>
         <ul class="answers">
           <answer
             @answered="handleAnswer"
             v-for="answer in question.answers" 
-            :key="answer.id" 
+            :key="answer.id"
+            :isCorrectAnswer="(isEasyModeEnabled && question.response_id === answer.id) ? true : false"
             :answer="answer"></answer>
         </ul>
       </form>
@@ -15,7 +16,6 @@
     <result
       v-if="isCorrect !== null"
       :isCorrect="isCorrect"></result>
-    <div v-if="isQuizEnded === true"> Score : </div>
   </section>
 </template>
 
@@ -117,6 +117,9 @@ export default {
   computed: {
     isQuizEnded () {
       return this.$store.state.isQuizEnded
+    },
+    isEasyModeEnabled () {
+      return this.$store.state.easyModeEnabled
     }
   }
 }

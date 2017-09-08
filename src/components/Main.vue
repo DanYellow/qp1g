@@ -3,6 +3,8 @@
     <question v-if="!isQuizEnded"></question>
     <progression v-if="!isQuizEnded"></progression>
     <score v-if="isQuizEnded"></score>
+
+    <router-link :to="{ name: 'intro' }" class="back-index">Retourner à l'accueil</router-link>
   </div>
 </template>
 
@@ -24,5 +26,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="postcss">
-
+  .back-index {
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+  }
 </style>

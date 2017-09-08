@@ -7,7 +7,8 @@ const store = new Vuex.Store({
   state: {
     responses: [],
     isQuizEnded: false,
-    nbQuestions: 0
+    nbQuestions: 0,
+    easyModeEnabled: false
   },
   mutations: {
     setResponse (state, { response, index }) {
@@ -24,6 +25,9 @@ const store = new Vuex.Store({
     reInitQuiz (state) {
       state.responses = new Array(length).fill(null)
       state.isQuizEnded = false
+    },
+    toggleEasyMode (state, easyModeEnabled = true) {
+      state.easyModeEnabled = easyModeEnabled
     }
   }
 })

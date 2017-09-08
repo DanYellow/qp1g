@@ -9,6 +9,7 @@
       v-model="response">
     <label :for="answer.id">
       <span>{{ answer.title }}</span>
+      <span v-if="isCorrectAnswer" class="hint">C'est la réponse</span>
     </label>
   </li>
 </template>
@@ -16,7 +17,7 @@
 <script>
 export default {
   name: 'answer',
-  props: ['answer'],
+  props: ['answer', 'isCorrectAnswer'],
   data () {
     return {
       response: null
