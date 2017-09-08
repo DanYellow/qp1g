@@ -75,7 +75,6 @@ export default {
         return shuffle(randAnwsers)
       }
 
-      console.log('fere', getRandAnwsers())
       this.question = randQuestion
       this.question.answers = getRandAnwsers()
       this.isCorrect = null
@@ -93,7 +92,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="postcss">
   .question {
     max-width: 1200px;
