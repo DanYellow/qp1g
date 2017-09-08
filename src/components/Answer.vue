@@ -8,7 +8,7 @@
       name="answer"
       v-model="response">
     <label :for="answer.id">
-      <span>{{ answer.title }} | {{ answer.id }}</span>
+      <span>{{ answer.title }}</span>
     </label>
   </li>
 </template>
@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     handleChange () {
-      console.log('ed', this.response)
       this.$emit('answered', this.response)
     }
   }
@@ -38,8 +37,11 @@ export default {
     flex: 1 1 calc(50% - 6px);
     height: 50px;
     border: 1px solid #d1d1d1;
-
     margin: 3px;
+
+    @media screen and (max-width: 640px)  {
+      flex: 1 1 100%;
+    }
 
     &:hover {
       background-color: #f3f3f3;

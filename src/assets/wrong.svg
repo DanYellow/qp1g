@@ -4,5 +4,6 @@
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="33.557px" height="27.118px" viewBox="0 0 33.557 27.118" enable-background="new 0 0 33.557 27.118" xml:space="preserve">
 <path fill="none" stroke="#010202" stroke-width="4.8462" stroke-miterlimit="10" d="M27.48,14.08
-	C26.834,27.555,6.063,27.132,6.063,13.559C6.063-0.604,28.122-0.111,27.48,14.08"/>
+	c-0.272,5.676-4.959,10.193-10.702,10.193c-5.918,0-10.715-4.797-10.715-10.715c0-5.917,4.797-10.715,10.715-10.715
+	s10.715,4.798,10.715,10.715C27.493,13.733,27.488,13.907,27.48,14.08"/>
 </svg>
