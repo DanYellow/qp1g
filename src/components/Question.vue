@@ -18,6 +18,7 @@
 
 <script>
 import axios from 'axios'
+import { findIndex, shuffle } from 'lodash'
 
 import answer from './Answer'
 import result from './Result'
@@ -33,7 +34,10 @@ export default {
     }
   },
   created () {
-    this.fetchAnswer()
+    this.fetchUsers().then((users) => {
+      this.users = users
+      this.fetchQuestions()
+    })
   },
   methods: {
     handleAnswer (response) {
@@ -46,16 +50,44 @@ export default {
 
       this.answers.push(this.isCorrect)
       setTimeout(() => {
-        this.fetchAnswer()
+        this.fetchQuestions()
       }, 2500)
     },
-    async fetchAnswer () {
+    async fetchQuestions () {
       const questionsRaw = await axios('static/datas/questions.json')
       const questions = questionsRaw.data
       const randQuestion = questions[Math.floor(Math.random() * questions.length)]
 
+      const userReponseId = findIndex(this.users, {id: randQuestion.response_id})
+
+      const getRandAnwsers = () => {
+        const usersCopy = [...this.users]
+        usersCopy.splice(userReponseId, 1)
+
+        const randAnwsers = [this.users[userReponseId]]
+        for (let i = 0; i < 3; i++) {
+          const randIndex = Math.floor(Math.random() * questions.length)
+          randAnwsers.push(usersCopy[randIndex])
+          usersCopy.splice(randIndex, 1)
+        }
+
+        // We shuffle the answer to avoid to have good answer at the first place
+        return shuffle(randAnwsers)
+      }
+
+      console.log('fere', getRandAnwsers())
       this.question = randQuestion
+      this.question.answers = getRandAnwsers()
       this.isCorrect = null
+    },
+    fetchUsers () {
+      return axios.get('static/datas/users.json')
+      .then((users) => {
+        return users.data
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
     }
   }
 }
