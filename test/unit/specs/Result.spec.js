@@ -1,5 +1,4 @@
 import Vue from 'vue'
-// import { mount } from 'avoriaz'
 
 import Result from '@/components/Result'
 

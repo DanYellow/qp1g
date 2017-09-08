@@ -1,7 +1,7 @@
 <template>
   <section class="question">
     <div v-if="Object.keys(question).length > 0 && isCorrect === null">
-      <h1 v-text="question.question"></h1>
+      <blockquote class="quote" v-text="question.question"></blockquote>
       <form>
         <ul class="answers">
           <answer
@@ -27,6 +27,7 @@ import answer from './Answer'
 import result from './Result'
 
 const NB_PROPOSITIONS = 3
+const NB_QUESTIONS = 4
 
 export default {
   name: 'question',
@@ -41,7 +42,7 @@ export default {
   created () {
     this.fetchUsers().then((users) => {
       this.users = users
-      this.$store.commit('setQuestionsNumber', 2)
+      this.$store.commit('setQuestionsNumber', NB_QUESTIONS)
       this.fetchQuestions()
     })
   },
@@ -127,10 +128,13 @@ export default {
     margin: 0 auto;
   }
 
-  h1 {
+  .quote {
     font: 25px Georgia;
     padding: 0;
     margin: 0 0 25px 0;
+    position: relative;
+    font-style: italic;
+
   }
 
   .answers {
@@ -139,9 +143,19 @@ export default {
   }
 
 </style>
-font: 25px Georgia;
-padding: 25px 20px;
-border: 1px solid black;
-background-color: rgba(0, 0, 0, .5);
-border-radius: 100px;
-color: white;
+    // &:before {
+    //   content: '“';
+    //   position: absolute;
+    //   font-size: 150px;
+    //   top: -40px;
+    //   opacity: .4;
+    // }
+
+    // &:after {
+    //   content: '“';
+    //   position: absolute;
+    //   font-size: 150px;
+    //   opacity: .4;
+    //   bottom: 0;
+    //   transform: rotate(-180deg);
+    // }
