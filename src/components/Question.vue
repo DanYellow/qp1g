@@ -144,21 +144,4 @@ export default {
     display: flex;
     flex-wrap: wrap;
   }
-
 </style>
-    // &:before {
-    //   content: '“';
-    //   position: absolute;
-    //   font-size: 150px;
-    //   top: -40px;
-    //   opacity: .4;
-    // }
-
-    // &:after {
-    //   content: '“';
-    //   position: absolute;
-    //   font-size: 150px;
-    //   opacity: .4;
-    //   bottom: 0;
-    //   transform: rotate(-180deg);
-    // }

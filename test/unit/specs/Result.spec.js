@@ -13,13 +13,13 @@ describe('Result.vue', () => {
     const Constructor = Vue.extend(Result)
     const vm = new Constructor({propsData: { isCorrect: true }}).$mount()
     expect(vm.$el.querySelector('.result p').textContent).to.equal('Correct')
-    expect(vm.$el.querySelectorAll('svg .correct').length).to.have.length(1)
+    expect(vm.$el.querySelectorAll('svg .correct')).to.have.length(1)
   })
 
   it('should display false vue', () => {
     const Constructor = Vue.extend(Result)
     const vm = new Constructor({propsData: { isCorrect: false }}).$mount()
     expect(vm.$el.querySelector('.result p').textContent).to.equal('Faux')
-    expect(vm.$el.querySelectorAll('svg .wrong').length).to.have.length(2)
+    expect(vm.$el.querySelectorAll('svg .wrong')).to.have.length(2)
   })
 })

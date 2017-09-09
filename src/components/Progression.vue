@@ -1,8 +1,8 @@
 <template>
-  <ul class="progress">
+  <ul class="progression">
     <li v-for="(response, index) in responses" :key="index">
-      <img src="../assets/check.svg" alt="" v-if="response === true">
-      <img src="../assets/wrong.svg" alt="" v-if="response === false">
+      <img src="../assets/check.svg" class="right" alt="" v-if="response === true">
+      <img src="../assets/wrong.svg" class="wrong" alt="" v-if="response === false">
       <div class="empty" v-if="response === null"></div>
     </li>
   </li>
@@ -22,7 +22,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="postcss">
-  .progress {
+  .progression {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,5 +42,4 @@ export default {
       background-color: gray;
     }
   }
-
 </style>
