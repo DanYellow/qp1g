@@ -1,18 +1,14 @@
 <template>
   <li class="answer">
-    <input 
-      type="radio"
-      @change="handleChange"
-      :value="answer.id"
-      :id="answer.id"
-      name="answer"
-      v-model="response">
-    <label :for="answer.id">
+    <button
+      @click="handleClick"
+      type="button"
+      :data-reponse-id="answer.id"
+      class="btn--reset">
       <p>{{ answer.title }}
         <span v-if="isCorrectAnswer" class="hint">C'est la bonne réponse</span>
-
       </p>
-    </label>
+    </button>
   </li>
 </template>
 
@@ -20,15 +16,9 @@
 export default {
   name: 'answer',
   props: ['answer', 'isCorrectAnswer'],
-  data () {
-    return {
-      response: null
-    }
-  },
   methods: {
-    handleChange () {
-      this.$emit('answered', this.response)
-      this.response = null
+    handleClick (e) {
+      this.$emit('answered', ~~e.target.dataset.reponseId)
     }
   }
 }
@@ -42,6 +32,8 @@ export default {
     height: 50px;
     border: 1px solid #d1d1d1;
     margin: 3px;
+    display: flex;
+    justify-content: center;
 
     @media screen and (max-width: 640px)  {
       flex: 1 1 100%;
@@ -55,22 +47,11 @@ export default {
       border-color: black;
     }
 
-    & input[type="radio"] {
-      display: none;
-    }
-
-    & label {
-      height: 100%;
+    & button {
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    & input[type="radio"]:active + label {
-      color: red;
-      @nest li & {
-        background-color: red;
+      height: 100%;
+      &:focus, &:active {
+        background-color: #f5f7f6;
       }
     }
 
