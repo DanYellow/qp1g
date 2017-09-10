@@ -1,5 +1,12 @@
 <template>
   <div class="intro">
+      <figure>
+        <img src="../assets/logo-gg.png" alt="">
+      </figure>
+      <p class="rules">
+        Teste tes connaissances de guéguerre. <br/>
+        Associe chaque citation le gamekultnaute qui a dit ça
+      </p>
       <router-link :to="{ name: 'quiz' }" @click.native='enabledEasyMode(false)'> Accéder au quizz</router-link>
       <router-link :to="{ name: 'quiz' }" @click.native='enabledEasyMode(true)' title="ou ror">Je suis journaliste de la presse vidéoludique</router-link>
   </div>
@@ -26,7 +33,7 @@ export default {
 
     & a {
       display: inline-block;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       position: relative;
       color: black;
       text-align: center;
@@ -40,6 +47,11 @@ export default {
           left: -20px;
         }
       }
+    }
+
+    & .rules {
+      margin-bottom: 20px;
+      text-align: center;
     }
   }
 </style>

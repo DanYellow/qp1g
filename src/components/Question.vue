@@ -1,6 +1,7 @@
 <template>
   <section class="question">
     <div v-if="Object.keys(question).length > 0 && isCorrect === null">
+      <p class="text">Qui a dit : </p>
       <blockquote class="quote">“{{ question.question }}”</blockquote>
       <form>
         <ul class="answers">
@@ -27,7 +28,7 @@ import answer from './Answer'
 import result from './Result'
 
 const NB_PROPOSITIONS = 3
-const NB_QUESTIONS = 4
+const NB_QUESTIONS = 5
 
 export default {
   name: 'question',
@@ -144,5 +145,10 @@ export default {
     flex-wrap: wrap;
     display: -webkit-flex;
     -webkit-flex-wrap: wrap;
+  }
+
+  .text {
+    margin-bottom: 7px;
+    font-size: 1.4rem;
   }
 </style>
