@@ -20,4 +20,14 @@ describe('Score.vue', () => {
     }).$mount()
     expect(vm.$el.querySelector('.score h3').textContent).to.equal('100 %')
   })
+
+  it('score a 0 %', () => {
+    const Constructor = Vue.extend(Score)
+    const mockStore = {...store, ...{state: {responses: [false, false]}}}
+
+    const vm = new Constructor({
+      store: mockStore
+    }).$mount()
+    expect(vm.$el.querySelector('.score h3').textContent).to.equal('0 %')
+  })
 })

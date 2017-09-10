@@ -14,6 +14,10 @@ export default {
 <style src='./utils.css' lang="postcss"></style>
 
 <style>
+html, body {
+  font-size: 16px;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

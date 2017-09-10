@@ -8,8 +8,10 @@
       name="answer"
       v-model="response">
     <label :for="answer.id">
-      <span>{{ answer.title }}</span>
-      <span v-if="isCorrectAnswer" class="hint">C'est la réponse</span>
+      <p>{{ answer.title }}
+        <span v-if="isCorrectAnswer" class="hint">C'est la bonne réponse</span>
+
+      </p>
     </label>
   </li>
 </template>
@@ -70,6 +72,12 @@ export default {
       @nest li & {
         background-color: red;
       }
+    }
+
+    & .hint {
+      vertical-align:super;
+      color: #2dac01;
+      font-size: 0.8rem;
     }
   }
 
