@@ -2,7 +2,7 @@
   <section class="score">
     <h2>Score</h2>
     <article>
-      <h3 v-if="score">{{ score }} %</h3>
+      <h3 v-if="score !== null">{{ score }} %</h3>
       <button class="btn--reset btn--restart" type="button" @click="restart">Recommencer</button>
     </article>
   </section>

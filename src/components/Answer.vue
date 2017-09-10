@@ -26,6 +26,7 @@ export default {
   methods: {
     handleChange () {
       this.$emit('answered', this.response)
+      this.response = null
     }
   }
 }
@@ -42,6 +43,7 @@ export default {
 
     @media screen and (max-width: 640px)  {
       flex: 1 1 100%;
+      -webkit-flex: 1 1 100%;
     }
 
     &:hover {

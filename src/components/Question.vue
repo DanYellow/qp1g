@@ -137,11 +137,12 @@ export default {
     margin: 0 0 25px 0;
     position: relative;
     font-style: italic;
-
   }
 
   .answers {
     display: flex;
     flex-wrap: wrap;
+    display: -webkit-flex;
+    -webkit-flex-wrap: wrap;
   }
 </style>
