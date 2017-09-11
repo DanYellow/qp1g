@@ -21,6 +21,9 @@ export const mutations = {
   },
   toggleEasyMode (state, easyModeEnabled = true) {
     state.easyModeEnabled = easyModeEnabled
+  },
+  isLoadingNextQuestion (state, isLoadingNextQuestion = true) {
+    state.isLoadingNextQuestion = isLoadingNextQuestion
   }
 }
 
@@ -29,7 +32,8 @@ const store = new Vuex.Store({
     responses: [],
     isQuizEnded: false,
     nbQuestions: 0,
-    easyModeEnabled: false
+    easyModeEnabled: false,
+    isLoadingNextQuestion: false
   },
   mutations
 })

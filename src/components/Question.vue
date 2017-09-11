@@ -61,6 +61,8 @@ export default {
         index: this.questionIndex
       })
 
+      this.$store.commit('isLoadingNextQuestion', true)
+
       setTimeout(() => {
         this.getNewQuestion()
       }, 2500)
@@ -104,6 +106,8 @@ export default {
       this.question = randQuestion
       this.question.answers = getRandAnwsers()
       this.isCorrect = null
+
+      this.$store.commit('isLoadingNextQuestion', false)
     },
     fetchUsers () {
       return axios.get('static/datas/users.json')

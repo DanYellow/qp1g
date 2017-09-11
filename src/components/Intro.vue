@@ -5,7 +5,7 @@
       </figure>
       <p class="rules">
         Teste tes connaissances de guéguerre. <br/>
-        Associe chaque citation le gamekultnaute qui a dit ça
+        Sélectionne le gamekultnaute qui a écrit la citation affichée
       </p>
       <router-link :to="{ name: 'quiz' }" @click.native='enabledEasyMode(false)'> Accéder au quizz</router-link>
       <router-link :to="{ name: 'quiz' }" @click.native='enabledEasyMode(true)' title="ou ror">Je suis journaliste de la presse vidéoludique</router-link>

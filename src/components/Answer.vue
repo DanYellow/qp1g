@@ -50,6 +50,8 @@ export default {
     & button {
       width: 100%;
       height: 100%;
+      font-size: .8rem;
+      font-weight: 400;
       &:focus, &:active {
         background-color: #f5f7f6;
       }
