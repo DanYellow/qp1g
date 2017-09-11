@@ -3,16 +3,14 @@
     <div v-if="Object.keys(question).length > 0 && isCorrect === null">
       <p class="text">Qui a dit : </p>
       <blockquote class="quote">“{{ question.question }}”</blockquote>
-      <form>
-        <ul class="answers">
-          <answer
-            @answered="handleAnswer"
-            v-for="answer in question.answers" 
-            :key="answer.id"
-            :isCorrectAnswer="(isEasyModeEnabled && question.response_id === answer.id) ? true : false"
-            :answer="answer"></answer>
-        </ul>
-      </form>
+      <ul class="answers">
+        <answer
+          @answered="handleAnswer"
+          v-for="answer in question.answers" 
+          :key="answer.id"
+          :isCorrectAnswer="(isEasyModeEnabled && question.response_id === answer.id) ? true : false"
+          :answer="answer"></answer>
+      </ul>
     </div>
     <result
       v-if="isCorrect !== null"
@@ -41,6 +39,8 @@ export default {
     }
   },
   created () {
+    if (process.env.NODE_ENV === 'testing') { return }
+
     this.fetchUsers().then((users) => {
       this.users = users
       this.$store.commit('setQuestionsNumber', NB_QUESTIONS)
@@ -97,7 +97,7 @@ export default {
 
         this.questions.splice(randQuestionId, 1)
 
-        // We shuffle the answer to avoid to have good answer at the first place
+        // We shuffle the answers to avoid to have good answer at the first place
         return shuffle(randAnwsers)
       }
 

@@ -4,7 +4,7 @@
     <progression v-if="!isQuizEnded"></progression>
     <score v-if="isQuizEnded"></score>
 
-    <router-link :to="{ name: 'intro' }" class="back-index">Retourner à l'accueil</router-link>
+    <router-link :to="{ name: 'intro' }" @click.native="restart" class="back-index">Retourner à l'accueil</router-link>
   </div>
 </template>
 
@@ -19,6 +19,11 @@ export default {
   computed: {
     isQuizEnded () {
       return this.$store.state.isQuizEnded
+    }
+  },
+  methods: {
+    restart () {
+      this.$store.commit('reInitQuiz')
     }
   }
 }
