@@ -4,7 +4,7 @@
         <img src="../assets/logo-gg.png" alt="">
       </figure>
       <p class="rules">
-        Teste tes connaissances de guéguerre. <br/>
+        Teste tes connaissances d'actu et des forums de Gamekult. <br/>
         Sélectionne le gamekultnaute qui a écrit la citation affichée
       </p>
       <router-link :to="{ name: 'quiz' }" @click.native='enabledEasyMode(false)'> Accéder au quizz</router-link>
